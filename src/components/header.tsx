@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { NavLink } from "./nav-link"
 
 export const Header = () => {
     return (
@@ -8,19 +9,19 @@ export const Header = () => {
                 <nav>
                     <ul className="flex gap-5 items-center">
                         <li>
-                            <Link href="/hombre" className="font-bold opacity-60 uppercase text-sm">Hombre</Link>
+                            <NavLink href="/hombre">Hombre</NavLink>
                         </li>
                         <li>
-                            <Link href="/mujer" className="font-bold opacity-60 uppercase text-sm">Mujer</Link>
+                            <NavLink href="/mujer">Mujer</NavLink>
                         </li>
                         <li>
-                            <Link href="/nosotros" className="font-bold opacity-60 uppercase text-sm">Nosotros</Link>
+                            <NavLink href="/nosotros">Nosotros</NavLink>
                         </li>
                         <li>
-                            <Link href="/carrito" className="font-bold opacity-60 uppercase text-sm">Carrito</Link>
+                            <NavLink href="/carrito">Carrito</NavLink>
                         </li>
                         <li>
-                            <Link href="/iniciar-sesion" className="font-bold opacity-60 uppercase text-sm">Ingresar</Link>
+                            <NavLink href="/iniciar-sesion">Ingresar</NavLink>
                         </li>
                     </ul>
                 </nav>
