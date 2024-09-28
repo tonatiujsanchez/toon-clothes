@@ -1,6 +1,14 @@
 import { products } from "@/data/products";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { currencyFormatMXN } from "@/utils";
+import { AddProductToCart } from "@/components/add-product-to-cart";
+
+
+export const metadata = {
+    title: 'Producto',
+    description: 'Descripción del Producto',
+};
 
 interface Props {
     params : {
@@ -9,6 +17,7 @@ interface Props {
 }
 export default function ProductPage({ params }:Props) {
 
+    // Consultar de la base datos
     const product = products.find( prod => prod.slug === params.slug )
 
     if( !product ){
@@ -22,24 +31,17 @@ export default function ProductPage({ params }:Props) {
                     <Image
                         src={`/products/${product.images[0]}`}
                         alt={ product.title }
-                        width={960}
-                        height={960}
+                        width={700}
+                        height={700}
+                        className="bg-slate-100"
                     />
                 </figure>
                 <div>
                     <h1 className="font-extrabold text-4xl mb-5">{ product.title }</h1>
-                    <p className="text-2xl font-bold mb-5">${ product.price }.00</p>
-                    <div className="mb-5 flex items-center gap-2">
-                        {
-                            product.sizes.map( size => (
-                                <button key={size} className="px-4 py-2 border rounded-sm hover:bg-gray-100">{ size }</button>
-                            ))
-                        }
-                    </div>
-                    <button className="bg-orange-600 text-white px-10 py-2 rounded font-bold mb-5 w-full lg:w-1/2">
-                        Agregar al carrito
-                    </button>
-                    <p className="text-xl mb-10 text-pretty">{product.description}</p>
+                    <p className="text-2xl font-bold mb-5">{ currencyFormatMXN(product.price) }</p>
+                    <AddProductToCart product={product} >
+                        <p className="text-xl mb-10 text-pretty">{product.description}</p>
+                    </AddProductToCart>
                 </div>
             </div>
         </main>

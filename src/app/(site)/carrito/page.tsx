@@ -1,8 +1,8 @@
 
 export default function CarPage() {
     return (
-        <div>
+        <main>
             <h1>CartPage</h1>
-        </div>
+        </main>
     );
 }

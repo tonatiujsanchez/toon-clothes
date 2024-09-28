@@ -50,7 +50,7 @@ export const products = [
         category: 'mujer',
         price: 299,
         sizes: ['CH', 'M', 'G'],
-        inStock: 9,
+        inStock: 16,
         images: [
             'PROD_17195_1.webp',
             'PROD_17195_2.webp',
@@ -63,7 +63,7 @@ export const products = [
         category: 'hombre',
         price: 299,
         sizes: ['M', 'G', 'EG'],
-        inStock: 9,
+        inStock: 8,
         images: [
             'PROD_17207_1.webp',
             'PROD_17207_2.webp',
@@ -77,7 +77,7 @@ export const products = [
         category: 'mujer',
         price: 299,
         sizes: ['CH', 'G', 'EG'],
-        inStock: 9,
+        inStock: 11,
         images: [
             'PROD_17197_2.webp',
             'PROD_17197_2.webp',
@@ -90,7 +90,7 @@ export const products = [
         category: 'mujer',
         price: 299,
         sizes: ['M', 'G', 'EG'],
-        inStock: 9,
+        inStock: 8,
         images: [
             'PROD_17196_1.webp',
             'PROD_17196_2.webp',
@@ -103,7 +103,7 @@ export const products = [
         category: 'hombre',
         price: 249,
         sizes: ['CH', 'M', 'G', 'EG'],
-        inStock: 9,
+        inStock: 20,
         images: [
             'PROD_17163_1.webp',
             'PROD_17163_2.webp',
@@ -169,7 +169,7 @@ export const products = [
         category: 'kids',
         price: 99,
         sizes: ['4', '6', '8', '10'],
-        inStock: 11,
+        inStock: 17,
         images: [
             'PROD_10982_1.webp',
             'PROD_10982_2.webp',
@@ -182,7 +182,7 @@ export const products = [
         category: 'kids',
         price: 129,
         sizes: ['6', '8', '10'],
-        inStock: 11,
+        inStock: 31,
         images: [
             'PROD_9400_01.webp',
             'PROD_9400_02.webp',
