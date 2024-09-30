@@ -1,3 +1,4 @@
+import { IoCartOutline, IoPersonCircleOutline } from "react-icons/io5"
 import Link from "next/link"
 import { NavLink } from "./nav-link"
 
@@ -21,10 +22,25 @@ export const Header = () => {
 
                 <ul className="flex gap-5">
                     <li>
-                        <NavLink href="/carrito">Carrito</NavLink>
+                        <Link 
+                            href="/carrito"
+                            className="relative text-2xl text-gray-950 hover:scale-110"
+                        >
+                            <IoCartOutline />
+                            {
+                                5 > 0 && (
+                                    <span className="absolute -top-1 -right-2 text-[0.7rem] w-4 h-4 rounded-full text-white bg-sky-600 flex items-center justify-center">{5}</span>
+                                )
+                            }
+                        </Link>
                     </li>
                     <li>
-                        <NavLink href="/iniciar-sesion">Ingresar</NavLink>
+                        <Link 
+                            href="/iniciar-sesion"
+                            className="text-2xl text-gray-950 hover:scale-110"
+                        >
+                            <IoPersonCircleOutline />
+                        </Link>
                     </li>
                 </ul>
             </div>
