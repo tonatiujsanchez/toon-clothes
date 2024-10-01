@@ -33,6 +33,7 @@ export default function ProductPage({ params }:Props) {
                         alt={ product.title }
                         width={700}
                         height={700}
+                        priority
                         className="bg-slate-100"
                     />
                 </figure>

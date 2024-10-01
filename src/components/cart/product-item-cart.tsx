@@ -22,6 +22,7 @@ export const ProductItemCart = ({ product, size, quantity }: Props) => {
                 width={150}
                 height={150}
                 className="h-24 w-24 object-cover rounded-md"
+                priority
             />
             <div className="flex-1 min-w-0">
                 <p className="text-lg font-medium text-gray-900 truncate">{product.title}</p>
