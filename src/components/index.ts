@@ -1,3 +1,5 @@
+export * from './auth/register-form'
+export * from './auth/login-form'
 export * from './auth/auth-link'
 
 export * from './ui/header'

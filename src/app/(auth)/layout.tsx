@@ -11,7 +11,7 @@ export default function AuthLayout(
             <div className="w-full md:w-3/5 min-h-full flex justify-center items-center p-5">
                 <div className="w-full shadow rounded-md px-5 py-7 max-w-[25rem] bg-white">
                     <div className="flex justify-center">
-                        <Link 
+                        <Link
                             href={'/'}
                             className="font-bold text-lg uppercase mb-4"
                         >
@@ -29,7 +29,7 @@ export default function AuthLayout(
                     </nav>
 
                     {/* Formularion */}
-                    { children }
+                    {children}
 
                 </div>
             </div>
