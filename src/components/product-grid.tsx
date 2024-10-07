@@ -1,10 +1,10 @@
-import { Product } from '@/interfaces/Product'
+import { IProduct } from '@/interfaces/IProduct'
 import Image from 'next/image'
 import Link from 'next/link'
 
 
 interface Props {
-    products: Product[]
+    products: IProduct[]
 }
 export const ProductGrid = ({ products }:Props) => {
 

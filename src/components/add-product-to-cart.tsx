@@ -1,10 +1,10 @@
 'use client'
-import { Product } from "@/interfaces/Product"
+import { IProduct } from "@/interfaces/IProduct"
 import { useState } from "react"
 
 
 interface Props {
-    product: Product
+    product: IProduct
     children: React.ReactNode
 }
 export const AddProductToCart = ({ product, children }: Props) => {

@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { MdRemove, MdAdd, MdClose } from 'react-icons/md'
-import { Product } from '@/interfaces';
+import { IProduct } from '@/interfaces';
 import { currencyFormatMXN } from '@/utils';
 
 
 
 interface Props {
-    product: Product
+    product: IProduct
     size: string
     quantity: number
 }
