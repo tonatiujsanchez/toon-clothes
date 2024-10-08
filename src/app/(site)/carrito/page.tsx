@@ -2,7 +2,7 @@ import { ProductItemCart } from "@/components";
 import { products } from "@/data/products";
 import { currencyFormatMXN } from "@/utils";
 
-export default function CarPage() {
+export default async function CarPage() {
 
     const cart = products.slice(0, 4).map(product => {
         const quantity = Math.floor(Math.random() * 10)

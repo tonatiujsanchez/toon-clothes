@@ -43,7 +43,8 @@ export const LoginForm = () => {
             dispatch( login( data.user ) )
 
             // Redirigir al usuario
-            router.replace('/')
+            // router.replace('/')
+            router.refresh()
 
         } catch (error) {
             console.log('CATH => ', error)
