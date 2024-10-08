@@ -1,7 +1,11 @@
 'use client'
 
+import { login } from "@/store/auth/authSlice"
+import { setCookie } from "cookies-next"
+import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
 import { useForm } from "react-hook-form"
+import { useDispatch } from "react-redux"
 
 
 interface RegisterFromData {
@@ -21,6 +25,8 @@ export const RegisterForm = () => {
         }
     })
     const [isLoading, setIsLoading] = useState(false)
+    const dispatch = useDispatch()
+    const router =  useRouter()
 
     const passwordRef = useRef({})
     passwordRef.current = watch('password', '')
@@ -41,11 +47,19 @@ export const RegisterForm = () => {
                 throw new Error(data.msg);
             }
 
-            console.log(data)
+            // Guardar token en las cookies
+            setCookie('toon-clothes-token', data.token)
+
+            // Hacer el dispatch de autenticación
+            dispatch( login( data.user ) )
+
+            // Redirigir al usuario
+            router.replace('/')
 
         } catch (error) {
             if (error instanceof Error) {
                 console.log(error.message);
+                // TODO: Mostrar el mensaje del error
             } else {
                 console.log('Error desconocido');
             }

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from 'bcryptjs'
 import { connectDB } from "@/libs/mongodb";
-import { isValidEmail } from "@/utils";
+import { isValidEmail, jwt } from "@/utils";
 import { User } from "@/models";
 
 
@@ -51,8 +51,18 @@ export async function POST( request: NextRequest ){
         // Agregar un token y poner en confirm en false
 
         // Enviar correo de confirmación
-                
-        return NextResponse.json(user)
+          
+        // TODO:
+        const token = jwt.signToken( user._id )
+        
+        return NextResponse.json({
+            token,
+            user: {
+                name  : user.name,
+                email : user.email,
+                role  : user.role
+            }
+        })
 
     } catch (error) {
         console.log(error)

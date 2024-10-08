@@ -16,3 +16,6 @@ export interface IUser {
 
 
 export type IUserRol = 'client' | 'admin'
+
+
+export type AuthStatus = 'checking' | 'authenticated' | 'not_authenticated'
