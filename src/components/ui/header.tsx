@@ -1,6 +1,7 @@
-import { IoCartOutline, IoPersonCircleOutline } from "react-icons/io5"
+import { IoCartOutline } from "react-icons/io5"
 import Link from "next/link"
 import { NavLink } from "./nav-link"
+import { UserAuth } from "@/components"
 
 export const Header = () => {
     return (
@@ -35,12 +36,7 @@ export const Header = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link 
-                            href="/iniciar-sesion"
-                            className="text-2xl text-gray-950 hover:scale-110"
-                        >
-                            <IoPersonCircleOutline />
-                        </Link>
+                        <UserAuth />
                     </li>
                 </ul>
             </div>

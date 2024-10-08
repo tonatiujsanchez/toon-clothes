@@ -1,6 +1,7 @@
 'use client'
 
 import { login } from "@/store/auth/authSlice"
+import { isEmail } from "@/utils"
 import { setCookie } from "cookies-next"
 import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
@@ -97,7 +98,8 @@ export const RegisterForm = () => {
                     className="rounded-md border px-4 py-2"
                     placeholder="Ingrese su correo"
                     {...register('email', {
-                        required: 'Ingrese su correo'
+                        required: 'Ingrese su correo',
+                        validate: ( value ) => isEmail( value )
                     })}
                 />
                 {errors.email && (
@@ -139,7 +141,7 @@ export const RegisterForm = () => {
             <div className="mt-2">
                 <button
                     disabled={ isLoading }
-                    className="bg-orange-600 text-white px-5 py-2 rounded-md font-bold mb-5 w-full flex items-center justify-center disabled:bg-orange-400"
+                    className="bg-orange-600 text-white px-5 py-2 rounded-md font-bold mb-5 w-full flex items-center justify-center disabled:opacity-35"
                 >
                     {
                         isLoading

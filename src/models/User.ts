@@ -38,6 +38,14 @@ export const UserSchema = new Schema<IUser>({
     timestamps: true
 })
 
+UserSchema.pre('save', async function( next ){
+    if( this.isModified('email') ){
+        this.email = this.email.toLowerCase()
+    }
+
+    next()
+})
+
 
 export const User:Model<IUser> = models.User || model('User', UserSchema)
 

@@ -39,7 +39,7 @@ export async function POST( request: NextRequest ){
         }
         
         const encryptedPassword = bcryptjs.hashSync(password)
-
+        
         const user = new User({
             name,
             email, 
@@ -52,8 +52,7 @@ export async function POST( request: NextRequest ){
 
         // Enviar correo de confirmación
           
-        // TODO:
-        const token = jwt.signToken( user._id )
+        const token = jwt.signToken( user._id, user.role )
         
         return NextResponse.json({
             token,
@@ -62,7 +61,7 @@ export async function POST( request: NextRequest ){
                 email : user.email,
                 role  : user.role
             }
-        })
+        },{ status: 201 })
 
     } catch (error) {
         console.log(error)
