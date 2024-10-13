@@ -44,19 +44,3 @@ export const verifyToken = (token: string): Promise<{ _id: string, role: IUserRo
     })
 
 }
-
-
-export const verifyTokenSync = (token: string): { _id: string; role: IUserRol } | null => {
-    if (!process.env.JWT_SECRET_KEY) {
-        console.error('Variable de entorno JWT_SECRET_KEY no está definida');
-        return null;
-    }
-
-    try {
-        const payload = jwt.verify(token, process.env.JWT_SECRET_KEY) as { _id: string; role: IUserRol };
-        return payload;
-    } catch (error) {
-        console.error('El token no es válido:', error);
-        return null;
-    }
-};

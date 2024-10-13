@@ -21,6 +21,7 @@ export async function middleware(request: NextRequest) {
         try {
             // Validar token
             const { payload } = await jose.jwtVerify(String(token.value), new TextEncoder().encode(process.env.JWT_SECRET_KEY))
+            // const payload = jwt.verify(token, process.env.JWT_SECRET_KEY) as { _id: string; role: IUserRol };
             console.log(payload)
             return NextResponse.next()
         } catch (error) {

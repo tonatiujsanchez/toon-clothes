@@ -17,7 +17,7 @@ interface InitialState {
 }
 
 const initialState:InitialState = {
-    status: 'not_authenticated',
+    status: 'checking',
 }
 
 export const authSlice = createSlice({
@@ -28,10 +28,14 @@ export const authSlice = createSlice({
             state.status = 'authenticated',
             state.user = action.payload
         },
+        logout: ( state ) => {
+            state.user = undefined
+            state.status = 'not_authenticated'
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { login } = authSlice.actions
+export const { login, logout } = authSlice.actions
 
 export default authSlice.reducer
