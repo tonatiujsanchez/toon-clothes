@@ -7,6 +7,7 @@ import { setCookie } from "cookies-next"
 import { login } from "@/store/auth/authSlice"
 import { useDispatch } from "react-redux"
 import { useRouter } from "next/navigation"
+import axios from "axios"
 
 
 interface LoginFromData{
@@ -57,12 +58,42 @@ export const LoginForm = () => {
         }finally {
             setLoading(false)
         }
+    }
+
+    const handleLoginFormWithAxios = async(formData: LoginFromData) => {
+        
+        setLoading(true)
+        try {
+            const { data } = await axios.post('/api/auth/login', formData)
+
+             // Guardar token en las cookies
+            //  setCookie('toon-clothes-token', data.token)
+
+            // Hacer el dispatch de autenticación
+            dispatch( login( data.user ) )
+
+            // Redirigir al usuario
+            router.replace('/')
+            router.refresh()
+
+        } catch (error) {
+            if( axios.isAxiosError(error) ){
+                console.log(error)
+                const { msg } = error.response?.data as { msg: string }
+                console.log(msg)
+            }else {
+                console.log('Hubo un error inesperado, contacte a soporte')
+            }
+        }finally {
+            setLoading(false)
+        }
 
     }
 
+
     return (
         <form
-            onSubmit={ handleSubmit( handleLoginForm ) }
+            onSubmit={ handleSubmit( handleLoginFormWithAxios ) }
             className="flex flex-col gap-4"
         >
             <div className="flex flex-col gap-1">

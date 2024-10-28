@@ -1,5 +1,6 @@
 'use client'
 import { Provider } from "react-redux"
+import { Toaster } from 'sonner'
 import { store } from "./"
 import { InitializerState } from "./initializer-state"
 
@@ -11,6 +12,7 @@ export const Providers = ({ children }:Props) => {
         <Provider store={store}>
             { children }
             <InitializerState />
+            <Toaster richColors />
         </Provider>
     )
 }

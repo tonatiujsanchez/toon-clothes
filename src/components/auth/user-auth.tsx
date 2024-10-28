@@ -18,6 +18,7 @@ export const UserAuth = () => {
 
     const handleLogout = () => {
         dispatch( startLogout() )
+        router.push('/iniciar-sesion')
         router.refresh()
     }
 

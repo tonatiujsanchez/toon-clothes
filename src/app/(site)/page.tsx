@@ -1,11 +1,14 @@
 import { ProductGrid } from "@/components/product-grid"
-import { products } from "@/data/products"
+import { Product } from "@/models"
 
-export default function Home() {
+export default async function Home() {
+
+    const productsDB = await Product.find()
+    
     return (
         <>            
             <main className="container py-10">
-                <ProductGrid products={ products } />
+                <ProductGrid products={ productsDB } />
             </main>
         </>
     )

@@ -2,6 +2,7 @@
 
 import { login } from "@/store/auth/authSlice"
 import { isEmail } from "@/utils"
+import axios from "axios"
 import { setCookie } from "cookies-next"
 import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
@@ -55,7 +56,9 @@ export const RegisterForm = () => {
             dispatch( login( data.user ) )
 
             // Redirigir al usuario
-            router.replace('/')
+            // router.replace('/')
+            router.refresh()
+
 
         } catch (error) {
             if (error instanceof Error) {
@@ -69,9 +72,33 @@ export const RegisterForm = () => {
         }
     }
 
+    const handleRegisterSubmitWithAxios = async(formData: RegisterFromData) => {
+        try {
+            
+            const { data } = await axios.post('/api/auth/register', formData)
+
+            // Guardar token en las cookies
+            setCookie('toon-clothes-token', data.token)
+
+            // Hacer el dispatch de autenticación
+            dispatch( login( data.user ) )
+
+            // Redirigir al usuario
+            router.refresh()
+
+        } catch (error) {
+            if(axios.isAxiosError(error)){
+                const { msg } = error.response?.data as { msg: string }
+                console.log(msg)  
+            }else {
+                console.log('Hubo un error inesperado, contacte a soporte')
+            }
+        }
+    }
+
     return (
         <form
-            onSubmit={handleSubmit(handleRegisterSubmit)}
+            onSubmit={handleSubmit(handleRegisterSubmitWithAxios)}
             className="flex flex-col gap-4"
         >
             <div className="flex flex-col gap-1">

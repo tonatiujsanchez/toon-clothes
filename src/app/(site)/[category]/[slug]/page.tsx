@@ -1,8 +1,8 @@
-import { products } from "@/data/products";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { currencyFormatMXN } from "@/utils";
 import { AddProductToCart } from "@/components/add-product-to-cart";
+import { Product } from '@/models';
 
 
 export const metadata = {
@@ -15,10 +15,10 @@ interface Props {
         slug: string
     }
 }
-export default function ProductPage({ params }:Props) {
+export default async function ProductPage({ params }:Props) {
 
     // Consultar de la base datos
-    const product = products.find( prod => prod.slug === params.slug )
+    const product = await Product.findOne({ slug: params.slug })
 
     if( !product ){
         notFound()

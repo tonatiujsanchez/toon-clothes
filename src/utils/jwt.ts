@@ -1,6 +1,7 @@
 import { IUserRol } from '@/interfaces'
 import jwt, { type SignOptions } from 'jsonwebtoken'
 
+
 export const signToken = (_id: string, role: IUserRol) => {
 
     if (!process.env.JWT_SECRET_KEY) {

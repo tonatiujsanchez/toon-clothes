@@ -1,5 +1,7 @@
-import { connectDB } from "@/libs/mongodb";
 import { NextResponse } from "next/server";
+import { connectDB } from "@/libs/mongodb";
+import { Product } from "@/models";
+import { products } from "@/data/products";
 
 
 export async function GET(){
@@ -12,10 +14,15 @@ export async function GET(){
     }    
 
     await connectDB()
+    
+    // Seed to Products
+    await Product.deleteMany()
+    await Product.insertMany( products )
+
 
     
     return NextResponse.json(
-        { msg: 'Hola desde seed...' }, 
+        { msg: 'OK! ✅' }, 
         { status: 201 }
     )
 }

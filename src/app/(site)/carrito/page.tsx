@@ -1,8 +1,12 @@
 import { ProductItemCart } from "@/components";
 import { products } from "@/data/products";
 import { currencyFormatMXN } from "@/utils";
+import { verifyAuth } from "@/utils/auth";
 
 export default async function CarPage() {
+
+    const isValidSession = await verifyAuth()
+    console.log(isValidSession)
 
     const cart = products.slice(0, 4).map(product => {
         const quantity = Math.floor(Math.random() * 10)

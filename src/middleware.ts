@@ -9,13 +9,18 @@ export async function middleware(request: NextRequest) {
 
     const cookieStore = cookies()
     const token = cookieStore.get('toon-clothes-token')
+    const { protocol, host } = request.nextUrl 
 
     
     // ===== usuarios autenticados =====
-    if( request.nextUrl.pathname.startsWith('/carrito') ){
+    if( 
+        // request.nextUrl.pathname.startsWith('/carrito') ||
+        request.nextUrl.pathname.startsWith('/profile')
+     ){
 
         if( !token ){
-            return NextResponse.redirect( new URL('/iniciar-sesion', request.url) )     
+            // return NextResponse.redirect( new URL('/iniciar-sesion', request.url) )
+            return NextResponse.redirect(`${protocol}//${host}/iniciar-sesion`)    
         }
         
         try {
@@ -26,7 +31,8 @@ export async function middleware(request: NextRequest) {
             return NextResponse.next()
         } catch (error) {
             console.log(error)
-            return NextResponse.redirect( new URL('/iniciar-sesion', request.url) )     
+            // return NextResponse.redirect( new URL('/iniciar-sesion', request.url) )
+            return NextResponse.redirect(`${protocol}//${host}/iniciar-sesion`)     
         }
     }
 
@@ -38,7 +44,8 @@ export async function middleware(request: NextRequest) {
         if( !token ){ return NextResponse.next() }
         try {
             await jose.jwtVerify(String(token.value), new TextEncoder().encode(process.env.JWT_SECRET_KEY))
-            return NextResponse.redirect( new URL('/', request.url) )     
+            // return NextResponse.redirect( new URL('/', request.url) )
+            return NextResponse.redirect(`${protocol}//${host}/`)
 
         } catch (error) {
             console.log(error)
@@ -53,6 +60,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         '/carrito',
+        '/profile',
 
         '/iniciar-sesion',
         '/crear-cuenta',
